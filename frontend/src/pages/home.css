@@ -1,0 +1,50 @@
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.home-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  text-align: center;
+  max-width: 500px;
+  color: white;
+}
+
+.home-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.home-text {
+  margin-bottom: 20px;
+}
+
+.home-button {
+  background-color: #22c55e;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.home-button:hover {
+  background-color: #16a34a;
+}
+
+.home-features {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.home-features p {
+  margin: 5px 0;
+}

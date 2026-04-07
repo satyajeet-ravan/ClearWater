@@ -1,0 +1,42 @@
+.result-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  max-width: 400px;
+}
+
+.result-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.result-status {
+  font-weight: 600;
+}
+
+.result-status.unsafe {
+  color: #ef4444; /* red */
+}
+
+.result-status.safe {
+  color: #22c55e; /* green */
+}
+
+.result-section {
+  margin-top: 10px;
+}
+
+.result-heading {
+  font-weight: 600;
+}
+
+.result-list {
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+.result-list.green {
+  color: #22c55e;
+}
