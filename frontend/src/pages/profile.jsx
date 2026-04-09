@@ -67,7 +67,7 @@ function Profile() {
               <div className="profile-contact-item">
                 <FaPhone className="profile-contact-icon" />
                 <div>
-                  <p className="profile-contact-label">Phone</p>
+                  <p className="profile-contact-label">Phone no.</p>
                   <p className="profile-contact-value">{user.phone}</p>
                 </div>
               </div>
