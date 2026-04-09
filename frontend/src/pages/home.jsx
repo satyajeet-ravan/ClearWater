@@ -12,7 +12,7 @@ function Home() {
         </h1>
 
         <p className="home-text">
-          Check if your local river water is safe for your needs.
+          Check if your local river water is safe for your needs and also know about the NGOs working for the welfare of the rivers.
         </p>
 
         <button className="home-button">
