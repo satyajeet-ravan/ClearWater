@@ -1,5 +1,14 @@
 import "./ngos.css";
 
+import efi1 from "../assets/efi-1.jpeg";
+import efi2 from "../assets/efi-2.jpeg";
+import tbs1 from "../assets/tbs-1.jpeg";
+import tbs2 from "../assets/tbs-2.jpeg";
+import iwf1 from "../assets/iwf-1.jpeg";
+import iwf2 from "../assets/iwf-2.jpeg";
+import wateraid1 from "../assets/wateraid-1.jpeg";
+import wateraid2 from "../assets/wateraid-2.jpeg";
+
 const ngosData = [
   {
     id: 1,
@@ -26,7 +35,7 @@ const ngosData = [
       "Consistent long-term projects",
     ],
     credibilityLabel: "Why They're Credible",
-    images: [null, null], // placeholders
+    images: [efi1, efi2],
   },
   {
     id: 2,
@@ -54,7 +63,7 @@ const ngosData = [
       "Recognized globally",
     ],
     credibilityLabel: "Why They're Credible",
-    images: [null, null],
+    images: [tbs1, tbs2],
   },
   {
     id: 3,
@@ -79,7 +88,7 @@ const ngosData = [
       "Limited direct ground restoration work",
     ],
     credibilityLabel: "Reality Check",
-    images: [null, null],
+    images: [iwf1, iwf2],
   },
   {
     id: 4,
@@ -105,7 +114,7 @@ const ngosData = [
       "Broader WASH (Water, Sanitation, Hygiene) focus",
     ],
     credibilityLabel: "Reality Check",
-    images: [null, null],
+    images: [wateraid1, wateraid2],
   },
 ];
 
