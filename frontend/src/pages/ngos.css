@@ -1,0 +1,198 @@
+.ngos-container {
+  padding: 10px 20px 40px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+/* Header */
+.ngos-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.ngos-header h1 {
+  font-size: 34px;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  margin-bottom: 8px;
+}
+
+.ngos-header p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Grid */
+.ngos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Card */
+.ngo-card {
+  display: flex;
+  gap: 24px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ngo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Images */
+.ngo-images {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.ngo-image-slot {
+  width: 220px;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.ngo-image-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.ngo-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ngo-image-placeholder span {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.ngo-image-placeholder p {
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Info */
+.ngo-info {
+  flex: 1;
+  color: white;
+}
+
+.ngo-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Badges */
+.ngo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ngo-badge {
+  background: rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #b3ecff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Sections */
+.ngo-section {
+  margin-bottom: 14px;
+}
+
+.ngo-section h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.ngo-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+}
+
+.ngo-section ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.ngo-section ul li {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Credibility highlight */
+.ngo-credibility {
+  background: rgba(34, 197, 94, 0.08);
+  border-left: 3px solid rgba(34, 197, 94, 0.5);
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ngo-card {
+    flex-direction: column;
+  }
+
+  .ngo-images {
+    flex-direction: row;
+  }
+
+  .ngo-image-slot {
+    width: 50%;
+    height: 140px;
+  }
+}
+
+/* Scrollbar styling */
+.ngos-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ngos-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ngos-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.ngos-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}

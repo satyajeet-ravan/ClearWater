@@ -32,7 +32,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit" className="login-button" onClick={() => navigate("/")}>
+        <button type="submit" className="login-button" onClick={(e) => { e.preventDefault(); navigate("/home"); }}>
           Login
         </button>
       </form>

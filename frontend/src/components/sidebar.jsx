@@ -24,10 +24,10 @@ function Sidebar({ isOpen }) {
           {isOpen && <span>History</span>}
         </div>
 
-        <div className="sidebar-item">
+        <Link to="/ngos" className="sidebar-item">
           <RiUserCommunityFill />
           {isOpen && <span>NGOs</span>}
-        </div>
+        </Link>
 
         <div className="sidebar-item">
           <CgProfile />

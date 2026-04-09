@@ -1,14 +1,13 @@
 import { useState } from "react";
 import MapView from "../components/mapview";
 import ResultCard from "../components/ResultCard";
-import fetch from "node-fetch";
 import { useEffect } from "react";
 
 function WaterQuality() {
   const [display, showDisplay] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/geocode?place=Maharashtra")
+    fetch("http://localhost:5001/geocode?place=Maharashtra")
       .then(res => res.json())
       .then(data => console.log(data))
       .catch(err => console.log(err))

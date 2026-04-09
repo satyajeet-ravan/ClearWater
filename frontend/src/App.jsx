@@ -5,6 +5,7 @@ import Sidebar from "./components/sidebar";
 import Home from "./pages/home";
 import WaterQuality from "./pages/waterQuality";
 import Login from "./pages/login";
+import Ngos from "./pages/ngos";
 import river from "./assets/river.png";
 import ResultCard from "./components/ResultCard";
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/check" element={<WaterQuality />} />
+            <Route path="/ngos" element={<Ngos />} />
           </Routes>
         </div>
 
