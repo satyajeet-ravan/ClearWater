@@ -1,6 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
-import geocodeRoute from "./controller/geocode.controller.js"
+import geocodeRoute from "./src/controller/geocode.controller.js"
 
 dotenv.config()
 const app = express()
