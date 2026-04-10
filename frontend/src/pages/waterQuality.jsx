@@ -5,6 +5,8 @@ import Statedropdown from "../components/stateDropdown";
 
 function WaterQuality() {
   const [display, showDisplay] = useState(false);
+  const [usage, setUsage] = useState("");
+  const [monitoringLocation, setMonitoringLocation] = useState("");
 
   return (
     <div className="flex gap-6 h-screen p-6 bg-gradient-to-br from-blue-50 via-white to-blue-100">
@@ -27,8 +29,25 @@ function WaterQuality() {
           {/* Dropdowns */}
           <Statedropdown />
 
-          <select className="w-full mb-4 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none transition">
-            <option>Usage</option>
+          <select
+            value={monitoringLocation}
+            onChange={(e) => setMonitoringLocation(e.target.value)}
+            className="w-full mb-3 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none transition"
+          >
+            <option value="">Monitoring Location</option>
+          </select>
+
+          <select
+            value={usage}
+            onChange={(e) => setUsage(e.target.value)}
+            className="w-full mb-4 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none transition"
+          >
+            <option value="">Usage</option>
+            <option value="A">Drinking Water (After Disinfection)</option>
+            <option value="B">Outdoor Bathing</option>
+            <option value="C">Drinking Water (After Treatment)</option>
+            <option value="D">Wildlife & Fisheries</option>
+            <option value="E">Irrigation & Industrial Use</option>
           </select>
 
           {/* Button */}
