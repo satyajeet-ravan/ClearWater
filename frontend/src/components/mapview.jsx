@@ -8,27 +8,59 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
 });
 
-import { MapContainer, TileLayer } from "react-leaflet";
-import { useEffect } from "react";
+import { Circle, MapContainer, TileLayer, Popup } from "react-leaflet";
+import { useEffect, useState } from "react";
+import AutoZoom from "../helpers/zooming.helper";
 
-function MapView() {
+function MapView({ state, district, river }) {
+  const [data, setData] = useState([]);
+
   useEffect(() => {
-    setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 100);
-  }, []);
+    if (!state || !district) return;
+
+    let url = `/api/rivers?state=${state}&districts=${district}`; // ✅ FIXED
+    if (river) url += `&river=${river}`; // ✅ FIXED
+
+    fetch(url)
+      .then(res => res.json())
+      .then(setData)
+      .catch(console.error);
+
+  }, [state, district, river]);
 
   return (
     <MapContainer
+      key={`${state}-${district}-${river}`}   // ✅ FORCE REFRESH
       center={[19.0760, 72.8777]}
-      zoom={10}
+      zoom={5}
       style={{ height: "1000px", width: "1000px" }}
     >
-      <TileLayer
-        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
+      <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
+      <AutoZoom data={data} />
+
+      {data.map((item, i) => {
+        if (!item.lattitude || !item.longitude) return null; // ✅ SAFETY
+
+        return (
+          <Circle
+            key={i}
+            center={[Number(item.lattitude), Number(item.longitude)]}
+            radius={5000}
+            pathOptions={{
+              color: "red",
+              fillColor: "red",
+              fillOpacity: 0.5
+            }}
+          >
+            <Popup>
+              <strong>{item["Monitoring Location"]}</strong><br />
+              {item["District"]}<br />
+              {item["State Name"]} {/* ✅ FIXED */}
+            </Popup>
+          </Circle>
+        );
+      })}
     </MapContainer>
   );
 }
