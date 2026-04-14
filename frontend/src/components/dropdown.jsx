@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Statedropdown() {
+function Dropdown() {
     const [states, showStates] = useState([]);
     const [state, selectState] = useState("");
 
@@ -8,6 +8,7 @@ function Statedropdown() {
     const [districts, selectDistricts] = useState("");
 
     const [rivers, showRivers] = useState([]);
+    const [river, selectRiver] = useState("");
 
     const handleStateChange = (value) => {
         selectState(value);
@@ -19,6 +20,10 @@ function Statedropdown() {
     const handleDistrictChange = (value) => {
         selectDistricts(value);
         showRivers([]);
+    };
+
+    const handleRiverChange = (value) => {
+        selectRiver(value);
     };
 
     useEffect(() => {
@@ -79,6 +84,7 @@ function Statedropdown() {
 
             <select
                 className="w-full mb-3 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 outline-none transition text-black"
+                onChange={(e) => handleRiverChange(e.target.value)}
             >
                 <option value="">Select Monitoring Location</option>
                 {rivers.map((item, index) => (
@@ -94,4 +100,4 @@ function Statedropdown() {
     );
 }
 
-export default Statedropdown;
+export default Dropdown;
