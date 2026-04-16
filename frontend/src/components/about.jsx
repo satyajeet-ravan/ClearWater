@@ -36,7 +36,7 @@ const About = () => {
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          src="https://images.unsplash.com/photo-1580742125433-8d0319b2b792?auto=format&fit=crop&w=800&q=80"
+          src="/logo.jpeg"
           alt="Clean Water"
         />
       </div>
