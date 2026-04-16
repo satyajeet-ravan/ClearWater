@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import Ngos from "./pages/ngos";
 import Profile from "./pages/profile";
 import Register from "./pages/register";
+import History from "./pages/history";
 import river from "./assets/river.png";
 import LandingPage from "./pages/Landingpage";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -55,6 +56,7 @@ function App() {
               <Route path="/check" element={<WaterQuality />} />
               <Route path="/ngos" element={<Ngos />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/history" element={<History />} />
             </Route>
           </Routes>
         </div>

@@ -2,8 +2,19 @@ import { useState } from "react";
 import MapView from "../components/mapview";
 import ResultCard from "../components/ResultCard";
 import Dropdown from "../components/dropdown";
+import { useAuth } from "../context/AuthContext";
+import { supabase } from "../supabaseClient";
+
+const USAGE_LABELS = {
+  A: "Drinking Water (without treatment)",
+  B: "Outdoor Bathing",
+  C: "Drinking Water (after treatment)",
+  D: "Wildlife & Fisheries",
+  E: "Irrigation / Industrial / Waste Disposal",
+};
 
 function WaterQuality() {
+  const { user } = useAuth();
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -38,6 +49,19 @@ function WaterQuality() {
       }
 
       setResult(data);
+
+      // Save to search history (fire and forget)
+      if (user) {
+        supabase.from("search_history").insert({
+          user_id: user.id,
+          river_location: river,
+          usage_category: USAGE_LABELS[usage] || usage,
+          result_status: data.pass ? "PASS" : "FAIL",
+          precaution: data.precautions || null,
+        }).then(({ error: histErr }) => {
+          if (histErr) console.error("History save error:", histErr.message);
+        });
+      }
     } catch (err) {
       setError("Something went wrong. Please try again.");
     } finally {

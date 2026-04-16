@@ -22,10 +22,10 @@ function Sidebar({ isOpen }) {
           <FaWater /> <span className="nowrap">Water Quality</span>
         </Link>
 
-        <div className="sidebar-item">
+        <Link to="/history" className="sidebar-item">
           <FaHistory />
           {isOpen && <span>History</span>}
-        </div>
+        </Link>
 
         <Link to="/ngos" className="sidebar-item">
           <RiUserCommunityFill />
