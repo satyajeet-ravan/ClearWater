@@ -52,7 +52,7 @@ function History() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-10 w-10 border-4 border-blue-500 border-t-transparent" />
+        <div className="animate-spin rounded-full h-10 w-10 border-4 border-emerald-500 border-t-transparent" />
       </div>
     );
   }
@@ -60,10 +60,13 @@ function History() {
   if (records.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-4">
-        <p className="text-white/70 text-lg">No searches yet. Go check some water quality!</p>
+        <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-400 text-2xl mb-2">
+          <FaTrashAlt />
+        </div>
+        <p className="text-gray-500 text-lg">No searches yet. Go check some water quality!</p>
         <Link
           to="/check"
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors no-underline"
+          className="px-6 py-3 bg-emerald-600 text-white rounded-full font-medium hover:bg-emerald-700 transition-colors no-underline text-sm"
         >
           Check Water Quality
         </Link>
@@ -75,12 +78,12 @@ function History() {
     <div className="max-w-3xl mx-auto space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
-        <h1 className="text-2xl font-bold text-white">Search History</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Search History</h1>
         <button
           onClick={handleClearAll}
-          className="flex items-center gap-2 px-4 py-2 text-sm bg-red-500/20 text-red-300 border border-red-400/30 rounded-lg hover:bg-red-500/30 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 bg-red-50 border border-red-100 rounded-full hover:bg-red-100 transition-colors"
         >
-          <FaTrashAlt /> Clear All History
+          <FaTrashAlt size={12} /> Clear All
         </button>
       </div>
 
@@ -93,53 +96,52 @@ function History() {
         return (
           <div
             key={record.id}
-            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4"
+            className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
-                <h3 className="text-white font-bold text-lg">{record.river_location}</h3>
-                <p className="text-white/60 text-sm mt-1">{record.usage_category}</p>
-                <p className="text-white/40 text-xs mt-1">{formatDate(record.searched_at)}</p>
+                <h3 className="text-gray-900 font-semibold">{record.river_location}</h3>
+                <p className="text-gray-500 text-sm mt-1">{record.usage_category}</p>
+                <p className="text-gray-400 text-xs mt-1">{formatDate(record.searched_at)}</p>
               </div>
 
               <div className="flex items-center gap-3">
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-bold ${
                     isFail
-                      ? "bg-red-500/20 text-red-300 border border-red-400/30"
-                      : "bg-green-500/20 text-green-300 border border-green-400/30"
+                      ? "bg-red-50 text-red-600 border border-red-200"
+                      : "bg-emerald-50 text-emerald-600 border border-emerald-200"
                   }`}
                 >
                   {record.result_status}
                 </span>
                 <button
                   onClick={() => handleDelete(record.id)}
-                  className="text-white/30 hover:text-red-400 transition-colors p-1"
+                  className="text-gray-300 hover:text-red-500 transition-colors p-1"
                   title="Delete record"
                 >
-                  <FaTrash size={14} />
+                  <FaTrash size={13} />
                 </button>
               </div>
             </div>
 
-            {/* Collapsible precautions */}
             {hasPrecaution && (
               <>
                 <button
                   onClick={() => setExpandedId(isExpanded ? null : record.id)}
-                  className="flex items-center gap-1 mt-3 text-sm text-amber-300/80 hover:text-amber-300 transition-colors bg-transparent border-none cursor-pointer"
+                  className="flex items-center gap-1 mt-3 text-sm text-emerald-600 hover:text-emerald-700 transition-colors bg-transparent border-none cursor-pointer font-medium"
                 >
-                  {isExpanded ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+                  {isExpanded ? <FaChevronUp size={11} /> : <FaChevronDown size={11} />}
                   {isExpanded ? "Hide Precautions" : "View Precautions"}
                 </button>
 
                 {isExpanded && (
-                  <div className="mt-3 p-3 bg-amber-900/20 border border-amber-400/20 rounded-lg">
-                    <div className="max-w-prose text-sm text-amber-100/80">
+                  <div className="mt-3 p-4 bg-emerald-50 border border-emerald-100 rounded-xl">
+                    <div className="max-w-prose text-sm">
                       <ReactMarkdown
                         components={{
                           h2: ({ children }) => (
-                            <h2 className="text-sm font-bold text-amber-300 mt-3 mb-1 uppercase tracking-wide">
+                            <h2 className="text-xs font-bold text-emerald-800 mt-3 mb-1 uppercase tracking-wide">
                               {children}
                             </h2>
                           ),
@@ -147,10 +149,10 @@ function History() {
                             <ul className="ml-4 list-disc space-y-1 text-sm">{children}</ul>
                           ),
                           li: ({ children }) => (
-                            <li className="text-amber-100/80 leading-snug">{children}</li>
+                            <li className="text-gray-700 leading-snug">{children}</li>
                           ),
                           p: ({ children }) => (
-                            <p className="text-sm text-amber-100/80 mb-2">{children}</p>
+                            <p className="text-sm text-gray-700 mb-2">{children}</p>
                           ),
                         }}
                       >

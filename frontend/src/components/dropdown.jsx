@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 
+const selectClass =
+  "w-full mb-3 px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow appearance-none";
+
 function Dropdown({ setState, setDistrict, setRiver }) {
 
     const [states, showStates] = useState([]);
@@ -12,7 +15,7 @@ function Dropdown({ setState, setDistrict, setRiver }) {
 
     const handleStateChange = (value) => {
         selectState(value);
-        setState(value);              //send to parent
+        setState(value);
         showdistrict([]);
         selectDistricts("");
         showRivers([]);
@@ -20,12 +23,12 @@ function Dropdown({ setState, setDistrict, setRiver }) {
 
     const handleDistrictChange = (value) => {
         selectDistricts(value);
-        setDistrict(value);           //send to parent
+        setDistrict(value);
         showRivers([]);
     };
 
     const handleRiverChange = (value) => {
-        setRiver(value);              //send to parent
+        setRiver(value);
     };
 
     useEffect(() => {
@@ -52,14 +55,14 @@ function Dropdown({ setState, setDistrict, setRiver }) {
 
     return (
         <>
-            <select onChange={(e) => handleStateChange(e.target.value)} value={state}>
+            <select onChange={(e) => handleStateChange(e.target.value)} value={state} className={selectClass}>
                 <option value="">Select State</option>
                 {states.map((item, i) => (
                     <option key={i} value={item}>{item}</option>
                 ))}
             </select>
 
-            <select onChange={(e) => handleDistrictChange(e.target.value)} value={districts}>
+            <select onChange={(e) => handleDistrictChange(e.target.value)} value={districts} className={selectClass}>
                 <option value="">Select District</option>
                 {district.map((item, i) => (
                     <option key={i} value={item["District"]}>
@@ -68,7 +71,7 @@ function Dropdown({ setState, setDistrict, setRiver }) {
                 ))}
             </select>
 
-            <select onChange={(e) => handleRiverChange(e.target.value)}>
+            <select onChange={(e) => handleRiverChange(e.target.value)} className={selectClass}>
                 <option value="">Select Monitoring Location</option>
                 {rivers.map((item, i) => (
                     <option key={i} value={item["Monitoring Location"]}>

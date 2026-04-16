@@ -69,39 +69,25 @@ function WaterQuality() {
     }
   };
 
-  return (
-    <div className="flex gap-6 h-screen p-6 bg-gradient-to-br from-blue-50 via-white to-blue-100">
+  const selectClass =
+    "w-full mb-3 px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow appearance-none";
 
+  return (
+    <div className="flex gap-6 h-full">
       {/* Map Area */}
-      <div className="flex-1 h-full rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-        <MapView
-          state={state}
-          district={district}
-          river={river}
-        />
+      <div className="flex-1 rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <MapView state={state} district={district} river={river} />
       </div>
 
       {/* Right Panel */}
       <div className="flex flex-col gap-4 w-96 overflow-y-auto">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-5">Check Water Quality</h2>
 
-        <div className="backdrop-blur-xl bg-white/70 border border-white/40 rounded-2xl shadow-lg p-6">
+          <Dropdown setState={setState} setDistrict={setDistrict} setRiver={setRiver} />
 
-          <h2 className="text-xl font-semibold mb-5 text-gray-800">
-            Check Water Quality
-          </h2>
-
-          <Dropdown
-            setState={setState}
-            setDistrict={setDistrict}
-            setRiver={setRiver}
-          />
-
-          <select
-            value={usage}
-            onChange={(e) => setUsage(e.target.value)}
-            className="w-full mb-4 p-3 rounded-lg border border-gray-300"
-          >
-            <option value="">Usage</option>
+          <select value={usage} onChange={(e) => setUsage(e.target.value)} className={selectClass}>
+            <option value="">Select Usage</option>
             <option value="A">Drinking Water (without treatment)</option>
             <option value="B">Outdoor Bathing</option>
             <option value="C">Drinking Water (after treatment)</option>
@@ -112,28 +98,26 @@ function WaterQuality() {
           <button
             onClick={handleCheckQuality}
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg disabled:opacity-50"
+            className="w-full bg-emerald-600 text-white font-medium py-3 rounded-full hover:bg-emerald-700 transition-colors disabled:opacity-50 text-sm mt-1"
           >
             {loading ? "Checking..." : "Check Quality"}
           </button>
 
-          {error && (
-            <p className="mt-3 text-sm text-red-600">{error}</p>
-          )}
+          {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
         </div>
 
         {loading && (
-          <div className="bg-white p-6 rounded-2xl shadow-lg text-center text-gray-500">
-            Loading water quality data...
+          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-3 border-emerald-500 border-t-transparent mx-auto mb-2" />
+            <p className="text-sm text-gray-500">Analyzing water quality...</p>
           </div>
         )}
 
         {result && (
-          <div className="bg-white p-6 rounded-2xl shadow-lg">
+          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
             <ResultCard result={result} />
           </div>
         )}
-
       </div>
     </div>
   );

@@ -8,34 +8,32 @@ const ResultCard = ({ result }) => {
   return (
     <div className="space-y-4">
       {/* Usage Label */}
-      <h3 className="text-lg font-bold text-gray-800 text-center">
-        {label}
-      </h3>
+      <h3 className="text-base font-bold text-gray-900 text-center">{label}</h3>
 
       {/* Pass/Fail Banner */}
       <div
-        className={`p-4 rounded-xl text-center text-xl font-bold ${
+        className={`py-3 px-4 rounded-xl text-center text-lg font-bold ${
           pass
-            ? "bg-green-100 text-green-800 border border-green-300"
-            : "bg-red-100 text-red-800 border border-red-300"
+            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+            : "bg-red-50 text-red-700 border border-red-200"
         }`}
       >
-        {pass ? "✓ PASS" : "✗ FAIL"}
+        {pass ? "PASS" : "FAIL"}
       </div>
 
       {/* Failure Details or Pass Message */}
       {pass ? (
-        <p className="text-sm text-green-700 text-center">
+        <p className="text-sm text-emerald-600 text-center">
           This water meets the standard for {label}. No major concerns detected.
         </p>
       ) : (
         failures.length > 0 && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-            <h4 className="font-semibold text-red-800 mb-2">Why it failed</h4>
+          <div className="p-4 bg-red-50 border border-red-100 rounded-xl">
+            <h4 className="text-sm font-semibold text-red-800 mb-2">Why it failed</h4>
             <ul className="ml-4 text-sm text-red-700 list-disc space-y-1">
               {failures.map((f, i) => (
                 <li key={i}>
-                  <strong>{f.parameter}</strong>: {f.value} (required: {f.limit})
+                  <span className="font-medium">{f.parameter}</span>: {f.value} (required: {f.limit})
                 </li>
               ))}
             </ul>
@@ -45,30 +43,28 @@ const ResultCard = ({ result }) => {
 
       {/* Precautions Section */}
       {pass ? (
-        <p className="text-sm text-gray-500 italic text-center">
+        <p className="text-xs text-gray-400 italic text-center">
           Water meets required standards for this use.
         </p>
       ) : (
-        <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl">
-          <h4 className="text-base font-semibold text-amber-800 mb-2">
+        <div className="p-4 bg-emerald-50 border border-emerald-100 rounded-xl">
+          <h4 className="text-sm font-semibold text-emerald-800 mb-2">
             Precautions & Recommendations
           </h4>
           {precautions ? (
-            <div className="max-w-prose text-gray-700">
+            <div className="max-w-prose">
               <ReactMarkdown
                 components={{
                   h2: ({ children }) => (
-                    <h2 className="text-sm font-bold text-amber-900 mt-4 mb-1 uppercase tracking-wide">
+                    <h2 className="text-xs font-bold text-emerald-800 mt-4 mb-1 uppercase tracking-wide">
                       {children}
                     </h2>
                   ),
                   ul: ({ children }) => (
-                    <ul className="ml-4 list-disc space-y-1 text-sm">
-                      {children}
-                    </ul>
+                    <ul className="ml-4 list-disc space-y-1 text-sm">{children}</ul>
                   ),
                   li: ({ children }) => (
-                    <li className="text-gray-700 leading-snug">{children}</li>
+                    <li className="text-gray-700 leading-snug text-sm">{children}</li>
                   ),
                   p: ({ children }) => (
                     <p className="text-sm text-gray-700 mb-2">{children}</p>
@@ -79,7 +75,7 @@ const ResultCard = ({ result }) => {
               </ReactMarkdown>
             </div>
           ) : (
-            <p className="text-sm text-gray-500 italic">
+            <p className="text-sm text-gray-400 italic">
               Precaution details unavailable at this time.
             </p>
           )}

@@ -1,5 +1,3 @@
-import "./ngos.css";
-
 import efi1 from "../assets/efi-1.jpeg";
 import efi2 from "../assets/efi-2.jpeg";
 import tbs1 from "../assets/tbs-1.jpeg";
@@ -124,71 +122,59 @@ const ngosData = [
 
 function NgoCard({ ngo }) {
   return (
-    <div className="ngo-card">
-      {/* Image gallery */}
-      <div className="ngo-images">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+      {/* Image row */}
+      <div className="grid grid-cols-2 gap-0.5 h-48">
         {ngo.images.map((img, idx) => (
-          <div key={idx} className="ngo-image-slot">
+          <div key={idx} className="overflow-hidden">
             {img ? (
-              <img src={img} alt={`${ngo.name} photo ${idx + 1}`} />
+              <img src={img} alt={`${ngo.name} ${idx + 1}`} className="w-full h-full object-cover" />
             ) : (
-              <div className="ngo-image-placeholder">
-                <span>📷</span>
-                <p>Image {idx + 1}</p>
+              <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400 text-sm">
+                No image
               </div>
             )}
           </div>
         ))}
       </div>
 
-      {/* Info section */}
-      <div className="ngo-info">
-        <h2 className="ngo-name">🌊 {ngo.name}</h2>
-
-        <div className="ngo-meta">
-          <span className="ngo-badge">{ngo.type}</span>
-          <span className="ngo-badge">Est. {ngo.founded}</span>
-          <span className="ngo-badge">📍 {ngo.location}</span>
-          {ngo.founder && (
-            <span className="ngo-badge">👤 {ngo.founder}</span>
-          )}
-          {ngo.parentOrg && (
-            <span className="ngo-badge">🏢 {ngo.parentOrg}</span>
-          )}
+      {/* Content */}
+      <div className="p-6 space-y-4">
+        <div>
+          <h2 className="text-lg font-bold text-gray-900">{ngo.name}</h2>
+          <div className="flex flex-wrap gap-2 mt-2">
+            <span className="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full font-medium">{ngo.type}</span>
+            <span className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">Est. {ngo.founded}</span>
+            <span className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">{ngo.location}</span>
+            {ngo.founder && <span className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">{ngo.founder}</span>}
+          </div>
         </div>
 
-        <div className="ngo-section">
-          <h3>🎯 Mission</h3>
-          <p>{ngo.mission}</p>
+        <div>
+          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Mission</h3>
+          <p className="text-sm text-gray-600 leading-relaxed">{ngo.mission}</p>
         </div>
 
-        <div className="ngo-section">
-          <h3>🔧 Key Activities</h3>
-          <ul>
-            {ngo.activities.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
+        <div>
+          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Key Activities</h3>
+          <ul className="text-sm text-gray-600 list-disc ml-4 space-y-0.5">
+            {ngo.activities.map((item, i) => <li key={i}>{item}</li>)}
           </ul>
         </div>
 
-        <div className="ngo-section">
-          <h3>🌍 Impact</h3>
-          <ul>
-            {ngo.impact.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
+        <div>
+          <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Impact</h3>
+          <ul className="text-sm text-gray-600 list-disc ml-4 space-y-0.5">
+            {ngo.impact.map((item, i) => <li key={i}>{item}</li>)}
           </ul>
         </div>
 
-        <div className="ngo-section ngo-credibility">
-          <h3>
-            {ngo.credibilityLabel === "Why They're Credible" ? "✅" : "⚠️"}{" "}
+        <div className={`p-3 rounded-xl ${ngo.credibilityLabel === "Why They're Credible" ? "bg-emerald-50" : "bg-amber-50"}`}>
+          <h3 className={`text-xs font-bold uppercase tracking-wide mb-1 ${ngo.credibilityLabel === "Why They're Credible" ? "text-emerald-700" : "text-amber-700"}`}>
             {ngo.credibilityLabel}
           </h3>
-          <ul>
-            {ngo.credibility.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
+          <ul className={`text-sm list-disc ml-4 space-y-0.5 ${ngo.credibilityLabel === "Why They're Credible" ? "text-emerald-700" : "text-amber-700"}`}>
+            {ngo.credibility.map((item, i) => <li key={i}>{item}</li>)}
           </ul>
         </div>
 
@@ -196,9 +182,9 @@ function NgoCard({ ngo }) {
           href={ngo.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full mt-4 py-3 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold text-sm text-center no-underline hover:from-sky-400 hover:to-blue-500 hover:shadow-[0_0_18px_rgba(56,189,248,0.5)] transition-all duration-300"
+          className="block w-full py-3 rounded-full bg-emerald-600 text-white font-medium text-sm text-center no-underline hover:bg-emerald-700 transition-colors"
         >
-          🤝 Join Us
+          Visit Website &rarr;
         </a>
       </div>
     </div>
@@ -207,16 +193,19 @@ function NgoCard({ ngo }) {
 
 function Ngos() {
   return (
-    <div className="ngos-container">
-      <div className="ngos-header">
-        <h1>🤝 NGOs Working for Water Conservation</h1>
-        <p>
+    <div className="max-w-6xl mx-auto">
+      <div className="mb-8">
+        <span className="inline-block bg-emerald-50 text-emerald-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-3">
+          Partners
+        </span>
+        <h1 className="text-3xl font-bold text-gray-900">NGOs Working for Water Conservation</h1>
+        <p className="text-gray-500 mt-2 max-w-xl">
           Discover organizations making a real difference in protecting and
           restoring India's water resources.
         </p>
       </div>
 
-      <div className="ngos-grid">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {ngosData.map((ngo) => (
           <NgoCard key={ngo.id} ngo={ngo} />
         ))}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "../supabaseClient";
-import "./register.css";
+import { FaTint } from "react-icons/fa";
 
 function Register() {
   const navigate = useNavigate();
@@ -55,7 +55,6 @@ function Register() {
       return;
     }
 
-    // Only insert profile if we got a session (email confirmation disabled)
     if (data.session) {
       const { error: profileError } = await supabase.from("profiles").insert({
         id: data.user.id,
@@ -74,92 +73,66 @@ function Register() {
 
       navigate("/login", { state: { message: "Registration successful! Please log in." } });
     } else {
-      // Email confirmation required — profile will be created after confirmation
       navigate("/login", { state: { message: "Please check your email to confirm your account, then log in." } });
     }
   };
 
+  const inputClass =
+    "w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow";
+
   return (
-    <div className="register-container">
-      <form className="register-form" onSubmit={handleSubmit}>
-        <h2 className="register-title">Create Account</h2>
-        <p className="register-subtitle">Join JalRakshak today</p>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-8">
+      <div className="w-full max-w-lg">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+          <div className="flex flex-col items-center mb-8">
+            <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center mb-3">
+              <FaTint className="text-white text-xl" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900">Create Account</h2>
+            <p className="text-sm text-gray-500 mt-1">Join JalRakshak today</p>
+          </div>
 
-        {error && <div className="register-error">{error}</div>}
+          {error && (
+            <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm text-center">
+              {error}
+            </div>
+          )}
 
-        <input
-          type="text"
-          name="fullName"
-          placeholder="Full Name"
-          className="register-input"
-          value={form.fullName}
-          onChange={handleChange}
-        />
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input type="text" name="fullName" placeholder="Full Name" className={inputClass} value={form.fullName} onChange={handleChange} />
+            <input type="email" name="email" placeholder="Email Address" className={inputClass} value={form.email} onChange={handleChange} />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          className="register-input"
-          value={form.email}
-          onChange={handleChange}
-        />
+            <div className="grid grid-cols-2 gap-3">
+              <input type="tel" name="phone" placeholder="Phone Number" className={inputClass} value={form.phone} onChange={handleChange} />
+              <input type="date" name="dob" placeholder="Date of Birth" className={inputClass} value={form.dob} onChange={handleChange} />
+            </div>
 
-        <div className="register-row">
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            className="register-input"
-            value={form.phone}
-            onChange={handleChange}
-          />
-          <input
-            type="date"
-            name="dob"
-            placeholder="Date of Birth"
-            className="register-input"
-            value={form.dob}
-            onChange={handleChange}
-          />
+            <input type="text" name="address" placeholder="Full Address" className={inputClass} value={form.address} onChange={handleChange} />
+
+            <div className="grid grid-cols-2 gap-3">
+              <input type="password" name="password" placeholder="Password" className={inputClass} value={form.password} onChange={handleChange} />
+              <input type="password" name="confirmPassword" placeholder="Confirm Password" className={inputClass} value={form.confirmPassword} onChange={handleChange} />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-emerald-600 text-white font-medium py-3 rounded-full hover:bg-emerald-700 transition-colors disabled:opacity-50 text-sm"
+            >
+              {loading ? "Registering..." : "Create Account"}
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-500">
+              Already have an account?{" "}
+              <Link to="/login" className="text-emerald-600 font-medium hover:text-emerald-700 no-underline">
+                Login here
+              </Link>
+            </p>
+          </div>
         </div>
-
-        <input
-          type="text"
-          name="address"
-          placeholder="Full Address"
-          className="register-input"
-          value={form.address}
-          onChange={handleChange}
-        />
-
-        <div className="register-row">
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            className="register-input"
-            value={form.password}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            className="register-input"
-            value={form.confirmPassword}
-            onChange={handleChange}
-          />
-        </div>
-
-        <button type="submit" className="register-button" disabled={loading}>
-          {loading ? "Registering..." : "Register"}
-        </button>
-
-        <p className="register-footer">
-          Already have an account? <Link to="/login" className="register-link">Login here</Link>
-        </p>
-      </form>
+      </div>
     </div>
   );
 }

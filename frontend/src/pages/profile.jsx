@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaCalendarAlt, FaEdit, FaSave, FaTimes } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../supabaseClient";
-import "./profile.css";
 
 function Profile() {
   const { user } = useAuth();
@@ -64,14 +63,14 @@ function Profile() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-10 w-10 border-4 border-blue-500 border-t-transparent" />
+        <div className="animate-spin rounded-full h-10 w-10 border-4 border-emerald-500 border-t-transparent" />
       </div>
     );
   }
 
   if (!profile) {
     return (
-      <div className="flex items-center justify-center h-full text-white text-lg">
+      <div className="flex items-center justify-center h-full text-gray-500 text-lg">
         Profile not found.
       </div>
     );
@@ -81,22 +80,29 @@ function Profile() {
     ? new Date(profile.created_at).toLocaleDateString("en-IN", { month: "long", year: "numeric" })
     : "N/A";
 
+  const editInputClass =
+    "w-full px-3 py-2 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent";
+
   return (
-    <div className="profile-container">
+    <div className="max-w-2xl mx-auto space-y-6">
       {/* Header Card */}
-      <div className="profile-header-card">
-        <div className="profile-avatar">
-          <span>{(profile.full_name || "U").charAt(0)}</span>
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex items-center gap-5">
+        <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shrink-0">
+          {(profile.full_name || "U").charAt(0)}
         </div>
-        <div className="profile-header-info">
-          <h1 className="profile-name">{profile.full_name}</h1>
-          <div className="profile-meta-row">
-            <span><FaMapMarkerAlt /> {profile.address || "No address"}</span>
-            <span><FaCalendarAlt /> Joined {memberSince}</span>
+        <div className="flex-1">
+          <h1 className="text-xl font-bold text-gray-900">{profile.full_name}</h1>
+          <div className="flex flex-wrap gap-4 mt-1 text-sm text-gray-500">
+            <span className="flex items-center gap-1"><FaMapMarkerAlt className="text-gray-400" /> {profile.address || "No address"}</span>
+            <span className="flex items-center gap-1"><FaCalendarAlt className="text-gray-400" /> Joined {memberSince}</span>
           </div>
         </div>
         <button
-          className="ml-auto px-4 py-2 rounded-lg text-sm font-medium bg-white/10 hover:bg-white/20 text-white transition-colors"
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+            editing
+              ? "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              : "border border-emerald-300 text-emerald-700 hover:bg-emerald-50"
+          }`}
           onClick={() => { setEditing(!editing); setMessage(""); }}
         >
           {editing ? <><FaTimes className="inline mr-1" />Cancel</> : <><FaEdit className="inline mr-1" />Edit Profile</>}
@@ -104,104 +110,82 @@ function Profile() {
       </div>
 
       {message && (
-        <div className={`mt-4 p-3 rounded-lg text-sm text-center ${message.includes("Failed") ? "bg-red-500/20 text-red-300" : "bg-green-500/20 text-green-300"}`}>
+        <div className={`p-3 rounded-xl text-sm text-center ${message.includes("Failed") ? "bg-red-50 text-red-600 border border-red-100" : "bg-emerald-50 text-emerald-600 border border-emerald-100"}`}>
           {message}
         </div>
       )}
 
-      {/* Content */}
-      <div className="profile-grid">
-        <div className="profile-left">
-          {/* Contact Info */}
-          <div className="profile-card">
-            <h2>Contact Information</h2>
-            <div className="profile-contact-list">
-              <div className="profile-contact-item">
-                <FaEnvelope className="profile-contact-icon" />
-                <div>
-                  <p className="profile-contact-label">Email</p>
-                  <p className="profile-contact-value">{profile.email}</p>
-                </div>
-              </div>
-              <div className="profile-contact-item">
-                <FaPhone className="profile-contact-icon" />
-                <div>
-                  <p className="profile-contact-label">Phone</p>
-                  {editing ? (
-                    <input
-                      type="tel"
-                      className="bg-white/10 border border-white/20 rounded px-2 py-1 text-white text-sm w-full"
-                      value={editForm.phone_no}
-                      onChange={(e) => setEditForm({ ...editForm, phone_no: e.target.value })}
-                    />
-                  ) : (
-                    <p className="profile-contact-value">{profile.phone_no || "Not set"}</p>
-                  )}
-                </div>
-              </div>
-              <div className="profile-contact-item">
-                <FaMapMarkerAlt className="profile-contact-icon" />
-                <div>
-                  <p className="profile-contact-label">Address</p>
-                  {editing ? (
-                    <input
-                      type="text"
-                      className="bg-white/10 border border-white/20 rounded px-2 py-1 text-white text-sm w-full"
-                      value={editForm.address}
-                      onChange={(e) => setEditForm({ ...editForm, address: e.target.value })}
-                    />
-                  ) : (
-                    <p className="profile-contact-value">{profile.address || "Not set"}</p>
-                  )}
-                </div>
-              </div>
+      {/* Contact Info */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+        <h2 className="text-base font-bold text-gray-900 mb-4">Contact Information</h2>
+        <div className="space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 shrink-0"><FaEnvelope /></div>
+            <div>
+              <p className="text-xs text-gray-400 uppercase tracking-wide">Email</p>
+              <p className="text-sm text-gray-900">{profile.email}</p>
             </div>
           </div>
-
-          {/* Personal Info */}
-          <div className="profile-card">
-            <h2>Personal Information</h2>
-            <div className="profile-contact-list">
-              <div className="profile-contact-item">
-                <div>
-                  <p className="profile-contact-label">Full Name</p>
-                  {editing ? (
-                    <input
-                      type="text"
-                      className="bg-white/10 border border-white/20 rounded px-2 py-1 text-white text-sm w-full"
-                      value={editForm.full_name}
-                      onChange={(e) => setEditForm({ ...editForm, full_name: e.target.value })}
-                    />
-                  ) : (
-                    <p className="profile-contact-value">{profile.full_name}</p>
-                  )}
-                </div>
-              </div>
-              <div className="profile-contact-item">
-                <FaCalendarAlt className="profile-contact-icon" />
-                <div>
-                  <p className="profile-contact-label">Date of Birth</p>
-                  <p className="profile-contact-value">
-                    {profile.dob
-                      ? new Date(profile.dob).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })
-                      : "Not set"}
-                  </p>
-                </div>
-              </div>
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 shrink-0"><FaPhone /></div>
+            <div className="flex-1">
+              <p className="text-xs text-gray-400 uppercase tracking-wide">Phone</p>
+              {editing ? (
+                <input type="tel" className={editInputClass} value={editForm.phone_no} onChange={(e) => setEditForm({ ...editForm, phone_no: e.target.value })} />
+              ) : (
+                <p className="text-sm text-gray-900">{profile.phone_no || "Not set"}</p>
+              )}
             </div>
           </div>
-
-          {editing && (
-            <button
-              className="w-full mt-2 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors disabled:opacity-50"
-              onClick={handleSave}
-              disabled={saving}
-            >
-              {saving ? "Saving..." : <><FaSave className="inline mr-2" />Save Changes</>}
-            </button>
-          )}
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 shrink-0"><FaMapMarkerAlt /></div>
+            <div className="flex-1">
+              <p className="text-xs text-gray-400 uppercase tracking-wide">Address</p>
+              {editing ? (
+                <input type="text" className={editInputClass} value={editForm.address} onChange={(e) => setEditForm({ ...editForm, address: e.target.value })} />
+              ) : (
+                <p className="text-sm text-gray-900">{profile.address || "Not set"}</p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Personal Info */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+        <h2 className="text-base font-bold text-gray-900 mb-4">Personal Information</h2>
+        <div className="space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="flex-1">
+              <p className="text-xs text-gray-400 uppercase tracking-wide">Full Name</p>
+              {editing ? (
+                <input type="text" className={editInputClass} value={editForm.full_name} onChange={(e) => setEditForm({ ...editForm, full_name: e.target.value })} />
+              ) : (
+                <p className="text-sm text-gray-900">{profile.full_name}</p>
+              )}
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 shrink-0"><FaCalendarAlt /></div>
+            <div>
+              <p className="text-xs text-gray-400 uppercase tracking-wide">Date of Birth</p>
+              <p className="text-sm text-gray-900">
+                {profile.dob ? new Date(profile.dob).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }) : "Not set"}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {editing && (
+        <button
+          className="w-full py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium transition-colors disabled:opacity-50 text-sm"
+          onClick={handleSave}
+          disabled={saving}
+        >
+          {saving ? "Saving..." : <><FaSave className="inline mr-2" />Save Changes</>}
+        </button>
+      )}
     </div>
   );
 }

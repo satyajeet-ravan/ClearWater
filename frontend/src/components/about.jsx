@@ -27,7 +27,7 @@ const About = () => {
             informed decisions for sustainable water management.
           </p>
 
-          
+
         </motion.div>
 
         <motion.img
