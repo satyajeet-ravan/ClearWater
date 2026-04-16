@@ -1,0 +1,37 @@
+.what-section {
+  padding: 80px 20px;
+  background: #caf0f866; /* light accent background */
+}
+
+.what-container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.what-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #004E64; /* secondary color */
+  margin-bottom: 50px;
+}
+
+.what-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .what-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .what-grid {
+    grid-template-columns: 1fr;
+  }
+}

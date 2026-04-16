@@ -1,0 +1,81 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1508182311256-e3f7e5a1addc?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: #2BB4A0;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #004E64;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.scroll-text {
+  position: absolute;
+  bottom: 30px;
+  font-size: 14px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 32px;
+  }
+}

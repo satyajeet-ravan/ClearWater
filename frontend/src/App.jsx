@@ -10,6 +10,7 @@ import Profile from "./pages/profile";
 import Register from "./pages/register";
 import river from "./assets/river.png";
 import ResultCard from "./components/ResultCard";
+import LandingPage from "./pages/Landingpage";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -44,8 +45,8 @@ function App() {
 
         <div className="flex-1 p-6">
           <Routes>
-
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home />} />
             <Route path="/check" element={<WaterQuality />} />
