@@ -11,6 +11,7 @@ import Register from "./pages/register";
 import History from "./pages/history";
 import LandingPage from "./pages/Landingpage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import InputForm from "./components/inputForm";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -46,6 +47,7 @@ function App() {
         <div className={`flex-1 overflow-y-auto ${isPublicPage ? "" : "p-6"}`}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/form" element={<InputForm />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 

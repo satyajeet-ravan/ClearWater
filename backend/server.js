@@ -6,6 +6,7 @@ import stateRoute from "./src/routes/stateRoute.js"
 import districtRoute from "./src/routes/districtFetch.router.js"
 import monitoringLocationRoute from "./src/routes/monitoringLocation.router.js"
 import waterQualityRoute from "./src/routes/waterQuality.router.js"
+import inputRouter from "./src/routes/inputQualityChecker.router.js"
 
 dotenv.config()
 const app = express()
@@ -19,6 +20,7 @@ app.use("/api", stateRoute)
 app.use("/api", districtRoute)
 app.use("/api", monitoringLocationRoute)
 app.use("/api/quality", waterQualityRoute)
+app.use("/api", inputRouter)
 
 app.get("/", (req, res) => {
     res.send("Server Running...")

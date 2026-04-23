@@ -1,16 +1,15 @@
-import ReactMarkdown from "react-markdown";
-
+import ReactMarkdown from "react-markdown"
 const ResultCard = ({ result }) => {
   if (!result) return null;
 
   const { selectedClass, label, pass, failures, precautions } = result;
 
+  const safeFailures = failures || [];
+
   return (
     <div className="space-y-4">
-      {/* Usage Label */}
       <h3 className="text-base font-bold text-gray-900 text-center">{label}</h3>
 
-      {/* Pass/Fail Banner */}
       <div
         className={`py-3 px-4 rounded-xl text-center text-lg font-bold ${
           pass
@@ -21,17 +20,18 @@ const ResultCard = ({ result }) => {
         {pass ? "PASS" : "FAIL"}
       </div>
 
-      {/* Failure Details or Pass Message */}
       {pass ? (
         <p className="text-sm text-emerald-600 text-center">
           This water meets the standard for {label}. No major concerns detected.
         </p>
       ) : (
-        failures.length > 0 && (
+        safeFailures.length > 0 && (
           <div className="p-4 bg-red-50 border border-red-100 rounded-xl">
-            <h4 className="text-sm font-semibold text-red-800 mb-2">Why it failed</h4>
+            <h4 className="text-sm font-semibold text-red-800 mb-2">
+              Why it failed
+            </h4>
             <ul className="ml-4 text-sm text-red-700 list-disc space-y-1">
-              {failures.map((f, i) => (
+              {safeFailures.map((f, i) => (
                 <li key={i}>
                   <span className="font-medium">{f.parameter}</span>: {f.value} (required: {f.limit})
                 </li>
@@ -41,7 +41,6 @@ const ResultCard = ({ result }) => {
         )
       )}
 
-      {/* Precautions Section */}
       {pass ? (
         <p className="text-xs text-gray-400 italic text-center">
           Water meets required standards for this use.
@@ -51,6 +50,7 @@ const ResultCard = ({ result }) => {
           <h4 className="text-sm font-semibold text-emerald-800 mb-2">
             Precautions & Recommendations
           </h4>
+
           {precautions ? (
             <div className="max-w-prose">
               <ReactMarkdown
