@@ -28,8 +28,7 @@ function MapView({ state, district, river }) {
       .then(res => res.json())
       .then(res =>
         {
-          setData(res),
-          console.log("Api Call", res);
+          setData(res)
         })
       .catch(console.error);
 
@@ -57,7 +56,7 @@ function MapView({ state, district, river }) {
 
       <AutoZoom data={data} selectedRiver={river}/>
 
-      {data.map((item, i) => {
+      {data.map((item) => {
         if (!item.lattitude || !item.longitude) return null;
         const key = item["Monitoring Location"];
         return (

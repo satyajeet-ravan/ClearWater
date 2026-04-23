@@ -32,7 +32,7 @@ function App() {
               <FaBars />
             </button>
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 bg-emerald-500 rounded-lg flex items-center justify-center">
+              <div className="w-7 h-7 bg-primary-500 rounded-lg flex items-center justify-center">
                 <FaTint className="text-white text-xs" />
               </div>
               <span className="text-lg font-bold text-gray-900">JalRakshak.</span>
@@ -47,13 +47,13 @@ function App() {
         <div className={`flex-1 overflow-y-auto ${isPublicPage ? "" : "p-6"}`}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/form" element={<InputForm />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
             <Route element={<ProtectedRoute />}>
               <Route path="/home" element={<Home />} />
               <Route path="/check" element={<WaterQuality />} />
+              <Route path="/manual" element={<InputForm />} />
               <Route path="/ngos" element={<Ngos />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/history" element={<History />} />

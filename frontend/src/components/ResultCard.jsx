@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown"
 const ResultCard = ({ result }) => {
   if (!result) return null;
 
-  const { selectedClass, label, pass, failures, precautions } = result;
+  const { label, pass, failures, precautions } = result;
 
   const safeFailures = failures || [];
 
@@ -13,7 +13,7 @@ const ResultCard = ({ result }) => {
       <div
         className={`py-3 px-4 rounded-xl text-center text-lg font-bold ${
           pass
-            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+            ? "bg-primary-50 text-primary-700 border border-primary-200"
             : "bg-red-50 text-red-700 border border-red-200"
         }`}
       >
@@ -21,7 +21,7 @@ const ResultCard = ({ result }) => {
       </div>
 
       {pass ? (
-        <p className="text-sm text-emerald-600 text-center">
+        <p className="text-sm text-primary-600 text-center">
           This water meets the standard for {label}. No major concerns detected.
         </p>
       ) : (
@@ -46,8 +46,8 @@ const ResultCard = ({ result }) => {
           Water meets required standards for this use.
         </p>
       ) : (
-        <div className="p-4 bg-emerald-50 border border-emerald-100 rounded-xl">
-          <h4 className="text-sm font-semibold text-emerald-800 mb-2">
+        <div className="p-4 bg-primary-50 border border-primary-100 rounded-xl">
+          <h4 className="text-sm font-semibold text-primary-800 mb-2">
             Precautions & Recommendations
           </h4>
 
@@ -56,7 +56,7 @@ const ResultCard = ({ result }) => {
               <ReactMarkdown
                 components={{
                   h2: ({ children }) => (
-                    <h2 className="text-xs font-bold text-emerald-800 mt-4 mb-1 uppercase tracking-wide">
+                    <h2 className="text-xs font-bold text-primary-800 mt-4 mb-1 uppercase tracking-wide">
                       {children}
                     </h2>
                   ),

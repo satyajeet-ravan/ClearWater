@@ -143,7 +143,7 @@ function NgoCard({ ngo }) {
         <div>
           <h2 className="text-lg font-bold text-gray-900">{ngo.name}</h2>
           <div className="flex flex-wrap gap-2 mt-2">
-            <span className="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full font-medium">{ngo.type}</span>
+            <span className="text-xs bg-primary-50 text-primary-700 px-2.5 py-1 rounded-full font-medium">{ngo.type}</span>
             <span className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">Est. {ngo.founded}</span>
             <span className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">{ngo.location}</span>
             {ngo.founder && <span className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">{ngo.founder}</span>}
@@ -169,11 +169,11 @@ function NgoCard({ ngo }) {
           </ul>
         </div>
 
-        <div className={`p-3 rounded-xl ${ngo.credibilityLabel === "Why They're Credible" ? "bg-emerald-50" : "bg-amber-50"}`}>
-          <h3 className={`text-xs font-bold uppercase tracking-wide mb-1 ${ngo.credibilityLabel === "Why They're Credible" ? "text-emerald-700" : "text-amber-700"}`}>
+        <div className={`p-3 rounded-xl ${ngo.credibilityLabel === "Why They're Credible" ? "bg-primary-50" : "bg-amber-50"}`}>
+          <h3 className={`text-xs font-bold uppercase tracking-wide mb-1 ${ngo.credibilityLabel === "Why They're Credible" ? "text-primary-700" : "text-amber-700"}`}>
             {ngo.credibilityLabel}
           </h3>
-          <ul className={`text-sm list-disc ml-4 space-y-0.5 ${ngo.credibilityLabel === "Why They're Credible" ? "text-emerald-700" : "text-amber-700"}`}>
+          <ul className={`text-sm list-disc ml-4 space-y-0.5 ${ngo.credibilityLabel === "Why They're Credible" ? "text-primary-700" : "text-amber-700"}`}>
             {ngo.credibility.map((item, i) => <li key={i}>{item}</li>)}
           </ul>
         </div>
@@ -182,7 +182,7 @@ function NgoCard({ ngo }) {
           href={ngo.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full py-3 rounded-full bg-emerald-600 text-white font-medium text-sm text-center no-underline hover:bg-emerald-700 transition-colors"
+          className="block w-full py-3 rounded-full bg-primary-800 text-white font-medium text-sm text-center no-underline hover:bg-primary-900 transition-colors"
         >
           Visit Website &rarr;
         </a>
@@ -195,7 +195,7 @@ function Ngos() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
-        <span className="inline-block bg-emerald-50 text-emerald-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-3">
+        <span className="inline-block bg-primary-50 text-primary-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-3">
           Partners
         </span>
         <h1 className="text-3xl font-bold text-gray-900">NGOs Working for Water Conservation</h1>

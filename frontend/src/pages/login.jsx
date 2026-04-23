@@ -35,7 +35,7 @@ function Login() {
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
           <div className="flex flex-col items-center mb-8">
-            <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center mb-3">
+            <div className="w-12 h-12 bg-primary-500 rounded-xl flex items-center justify-center mb-3">
               <FaTint className="text-white text-xl" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900">Welcome back</h2>
@@ -43,7 +43,7 @@ function Login() {
           </div>
 
           {successMessage && (
-            <div className="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm text-center">
+            <div className="mb-4 p-3 rounded-xl bg-primary-50 border border-primary-200 text-primary-700 text-sm text-center">
               {successMessage}
             </div>
           )}
@@ -58,7 +58,7 @@ function Login() {
             <input
               type="email"
               placeholder="Email address"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -66,7 +66,7 @@ function Login() {
             <input
               type="password"
               placeholder="Password"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -74,7 +74,7 @@ function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-emerald-600 text-white font-medium py-3 rounded-full hover:bg-emerald-700 transition-colors disabled:opacity-50 text-sm"
+              className="w-full bg-primary-800 text-white font-medium py-3 rounded-full hover:bg-primary-900 transition-colors disabled:opacity-50 text-sm"
             >
               {loading ? "Signing in..." : "Sign In"}
             </button>
@@ -83,7 +83,7 @@ function Login() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-500">
               Don't have an account?{" "}
-              <Link to="/register" className="text-emerald-600 font-medium hover:text-emerald-700 no-underline">
+              <Link to="/register" className="text-primary-800 font-medium hover:text-primary-900 no-underline">
                 Register here
               </Link>
             </p>

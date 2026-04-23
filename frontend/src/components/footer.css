@@ -1,5 +1,5 @@
 .footer {
-  background: #004E64; /* secondary color */
+  background: var(--color-primary-900); /* secondary color */
   color: white;
   padding: 40px 20px;
 }
@@ -39,7 +39,7 @@
 }
 
 .footer-links a:hover {
-  color: #2BB4A0; /* primary */
+  color: var(--color-primary-800); /* primary */
 }
 
 .footer-icons {
@@ -55,7 +55,7 @@
 }
 
 .footer-icons svg:hover {
-  color: #2BB4A0;
+  color: var(--color-primary-800);
 }
 
 .footer-bottom {

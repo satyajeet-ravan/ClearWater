@@ -63,14 +63,14 @@ function WaterQuality() {
         });
       }
     } catch (err) {
-      setError("Something went wrong. Please try again.");
+      setError(err.message || "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   const selectClass =
-    "w-full mb-3 px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow appearance-none";
+    "w-full mb-3 px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow appearance-none";
 
   return (
     <div className="flex gap-6 h-full">
@@ -98,7 +98,7 @@ function WaterQuality() {
           <button
             onClick={handleCheckQuality}
             disabled={loading}
-            className="w-full bg-emerald-600 text-white font-medium py-3 rounded-full hover:bg-emerald-700 transition-colors disabled:opacity-50 text-sm mt-1"
+            className="w-full bg-primary-800 text-white font-medium py-3 rounded-full hover:bg-primary-900 transition-colors disabled:opacity-50 text-sm mt-1"
           >
             {loading ? "Checking..." : "Check Quality"}
           </button>
@@ -108,7 +108,7 @@ function WaterQuality() {
 
         {loading && (
           <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-3 border-emerald-500 border-t-transparent mx-auto mb-2" />
+            <div className="animate-spin rounded-full h-8 w-8 border-3 border-primary-500 border-t-transparent mx-auto mb-2" />
             <p className="text-sm text-gray-500">Analyzing water quality...</p>
           </div>
         )}

@@ -1,8 +1,8 @@
 import React from "react";
 import waterVideo from "../assets/river.mp4";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { motion } from "framer-motion";
 import "./Hero.css";
 
 const Hero = () => {

@@ -40,7 +40,7 @@ function InputForm() {
     };
 
     try {
-      const res = await fetch("/api/quality/manual", {
+      const res = await fetch("/api/quality/input", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,13 +64,13 @@ function InputForm() {
   };
 
   const inputClass =
-    "w-full mb-3 px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500";
+    "w-full mb-3 px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500";
 
   const labelClass = "block text-sm font-medium text-gray-700 mb-1";
 
   return (
     <>
-      <h1 className="text-lg font-semibold mb-4">Check Your Own Water Quality</h1>
+      <h1 className="text-lg font-semibold mb-4 text-center">Check Your Own Water Quality</h1>
 
       {/* pH */}
       <label className={labelClass}>pH</label>
@@ -78,7 +78,7 @@ function InputForm() {
         name="ph"
         value={formData.ph}
         onChange={handleChange}
-        placeholder="Enter pH (0 – 14)"
+        placeholder="Enter pH (0 - 14)"
         className={inputClass}
         required
       />
@@ -137,7 +137,7 @@ function InputForm() {
       <button
         onClick={handleSubmit}
         disabled={loading}
-        className="w-full bg-emerald-600 text-white font-medium py-3 rounded-full hover:bg-emerald-700 transition-colors disabled:opacity-50 text-sm mt-1"
+        className="w-full bg-primary-800 text-white font-medium py-3 rounded-full hover:bg-primary-900 transition-colors disabled:opacity-50 text-sm mt-1"
       >
         {loading ? "Checking..." : "Check Quality"}
       </button>
@@ -148,7 +148,7 @@ function InputForm() {
       {/* Loading */}
       {loading && (
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-4 border-emerald-500 border-t-transparent mx-auto mb-2" />
+          <div className="animate-spin rounded-full h-8 w-8 border-4 border-primary-500 border-t-transparent mx-auto mb-2" />
           <p className="text-sm text-gray-500">Analyzing water quality...</p>
         </div>
       )}
