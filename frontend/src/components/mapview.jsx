@@ -8,12 +8,15 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
 });
 
-import { Circle, MapContainer, TileLayer, Popup } from "react-leaflet";
+
+import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import { useEffect, useState } from "react";
 import AutoZoom from "../helpers/zooming.helper";
+import { useRef } from "react";
 
 function MapView({ state, district, river }) {
   const [data, setData] = useState([]);
+  const markerRef = useRef({});
 
   useEffect(() => {
     if (!state || !district) return;
@@ -32,6 +35,17 @@ function MapView({ state, district, river }) {
 
   }, [state, district, river]);
 
+  useEffect(() => {
+    if(!river || data.length === 0) return;
+
+    const label = markerRef.current[river];
+    if(label){
+    label.openPopup();
+    }
+  }, [river, data]);
+
+  
+
   return (
     <MapContainer
       key={`${state}-${district}-${river}`}
@@ -41,28 +55,26 @@ function MapView({ state, district, river }) {
     >
       <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      <AutoZoom data={data} />
+      <AutoZoom data={data} selectedRiver={river}/>
 
       {data.map((item, i) => {
         if (!item.lattitude || !item.longitude) return null;
-
+        const key = item["Monitoring Location"];
         return (
-          <Circle
-            key={i}
-            center={[Number(item.lattitude), Number(item.longitude)]}
-            radius={5000}
-            pathOptions={{
-              color: "red",
-              fillColor: "red",
-              fillOpacity: 0.5
-            }}
-          >
+          <Marker 
+          key={key}
+          position={[Number(item.lattitude), Number(item.longitude)]}
+          ref={(ref) => {
+            if(ref){
+              markerRef.current[key] = ref;
+            }
+          }}>
             <Popup>
-              <strong>{item["Monitoring Location"]}</strong><br />
-              {item["District"]}<br />
-              {item["State Name"]}
+              <strong>{key}</strong><br />
+              <p>District: {district}</p>
+              <p>State: {state}</p>
             </Popup>
-          </Circle>
+            </Marker>
         );
       })}
     </MapContainer>

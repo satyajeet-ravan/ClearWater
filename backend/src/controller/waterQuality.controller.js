@@ -6,6 +6,7 @@ const VALID_CLASSES = ["A", "B", "C", "D", "E"];
 
 const waterQuality = async (req, res) => {
   let { state, district, river, usage } = req.query;
+
   state = decodeURIComponent(state || "").trim();
   district = decodeURIComponent(district || "").trim();
   river = decodeURIComponent(river || "").trim();
@@ -37,10 +38,6 @@ const waterQuality = async (req, res) => {
 
   const row = data[0];
 
-  // Map actual DB columns to checker params.
-  // For pollutants (BOD, TC) use Max (worst case).
-  // For beneficial params (DO) use Min (worst case).
-  // For range params (pH, Conductivity) pass both min and max.
   const params = {
     TC: row["Total Coliform (MPN/100ml) Max"] ?? null,
     pH_min: row["pH Min"] ?? null,
@@ -48,22 +45,35 @@ const waterQuality = async (req, res) => {
     DO: row["Dissolved\nOxygen (mg/L) Min"] ?? null,
     BOD: row["BOD\n(mg/L) Max"] ?? null,
     EC: row["Conductivity (µmho/cm) Max"] ?? null,
-    // These columns don't exist in the current DB — pass null
     FA: null,
     SAR: null,
     B: null,
   };
 
   const qualityResult = checkWaterQuality(params);
-  const classResult = qualityResult.classes[usage];
 
-  const precautions = await getPrecautions(usage, classResult, river);
+  const classResult = qualityResult.classes?.[usage];
+
+  if (!classResult) {
+    return res.status(500).json({
+      error: "Failed to evaluate water quality",
+    });
+  }
+
+  const safeRiver = river || "this water sample";
+
+  let precautions = null;
+  try {
+    precautions = await getPrecautions(usage, classResult, safeRiver);
+  } catch (err) {
+    console.error("Precautions error:", err);
+  }
 
   return res.json({
     selectedClass: usage,
     label: classResult.label,
     pass: classResult.pass,
-    failures: classResult.failures,
+    failures: classResult.failures || [],
     precautions: precautions || null,
   });
 };

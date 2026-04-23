@@ -1,30 +1,50 @@
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 
-function AutoZoom({ data }) {
+function AutoZoom({ data, selectedRiver }) {
   const map = useMap();
 
   useEffect(() => {
   if (!data || data.length === 0) return;
 
-  const points = data
-    .filter(d => d.lattitude && d.longitude)
+  const validData = data.filter(d => !isNaN(d.lattitude) && !isNaN(d.longitude));
+
+  if(validData.length === 0) return;
+
+  const points = validData
     .map(d => [
       Number(d.lattitude),
       Number(d.longitude)
     ]);
 
     console.log(points);
-    
 
-  if (points.length === 0) return;
+    const selected = validData.find(d => d["Monitoring Location"] === selectedRiver);
+    console.log(selected);
+    
 
   setTimeout(() => {
     map.invalidateSize();
 
+
     if (points.length === 1) {
-      map.setView(points[0], 10, { animate: true });
-    } else {
+      map.flyTo(points[0], 10, { duration: 1.2,
+        easeLinearity: 0.25
+       });
+    }
+    if(selectedRiver){
+      const focuspoint = [
+        Number(selected.lattitude),
+        Number(selected.longitude)
+      ];
+       map.flyTo(focuspoint, 10, {
+        duration: 1.2,
+        easeLinearity: 0.25
+       });
+       return;
+    }
+    
+    else {
       map.fitBounds(points, {
         padding: [50, 50],
         animate: true
@@ -33,7 +53,7 @@ function AutoZoom({ data }) {
   }, 100);
   
 // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [data]);
+}, [data, selectedRiver]);
 
 console.log("Effect Triggered");
 
