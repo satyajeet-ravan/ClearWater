@@ -20,7 +20,7 @@
   z-index: 0;
 }
 
-/* 🌑 OVERLAY */
+
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -31,7 +31,7 @@
   z-index: 1;
 }
 
-/* ✨ CONTENT CENTER FIX */
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -39,10 +39,10 @@
   padding: 20px;
   color: white;
 
-  margin: 0 auto; /* 🔥 THIS FIXES RIGHT SHIFT */
+  margin: 0 auto; 
 }
 
-/* TEXT */
+
 .hero-content h1 {
   font-size: 48px;
   font-weight: bold;

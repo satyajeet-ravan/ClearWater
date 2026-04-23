@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./about.css";
+import aboutImg from "../assets/about.png"; 
 
 const About = () => {
   return (
@@ -26,8 +27,6 @@ const About = () => {
             visualization, we help users, researchers, and authorities make
             informed decisions for sustainable water management.
           </p>
-
-
         </motion.div>
 
         <motion.img
@@ -36,7 +35,7 @@ const About = () => {
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          src="/logo.jpeg"
+          src={aboutImg} 
           alt="Clean Water"
         />
       </div>
