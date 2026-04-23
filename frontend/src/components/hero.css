@@ -1,29 +1,48 @@
 .hero {
   position: relative;
   height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1508182311256-e3f7e5a1addc?auto=format&fit=crop&w=1600&q=80");
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
 }
 
+/* 🎥 VIDEO */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* 🌑 OVERLAY */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.35)
+  );
+  z-index: 1;
 }
 
+/* ✨ CONTENT CENTER FIX */
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 700px;
   padding: 20px;
+  color: white;
+
+  margin: 0 auto; /* 🔥 THIS FIXES RIGHT SHIFT */
 }
 
+/* TEXT */
 .hero-content h1 {
   font-size: 48px;
   font-weight: bold;
@@ -35,10 +54,12 @@
   margin-bottom: 30px;
 }
 
+/* BUTTONS */
 .hero-buttons {
   display: flex;
   gap: 15px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn-primary {
@@ -48,10 +69,12 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn-primary:hover {
   background: #004E64;
+  transform: scale(1.05);
 }
 
 .btn-secondary {
@@ -61,19 +84,23 @@
   padding: 12px 24px;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* SCROLL TEXT */
 .scroll-text {
   position: absolute;
   bottom: 30px;
   font-size: 14px;
+  color: white;
+  z-index: 2;
 }
 
-/* Mobile */
+/* 📱 MOBILE */
 @media (max-width: 768px) {
   .hero-content h1 {
     font-size: 32px;

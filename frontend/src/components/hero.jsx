@@ -1,4 +1,5 @@
 import React from "react";
+import waterVideo from "../assets/river.mp4";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -10,8 +11,15 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero">
+      {/* 🎥 VIDEO BACKGROUND */}
+      <video autoPlay loop muted playsInline className="hero-video">
+        <source src={waterVideo} type="video/mp4" />
+      </video>
+
+      {/* 🌑 OVERLAY */}
       <div className="hero-overlay"></div>
 
+      {/* CONTENT */}
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, y: 30 }}
@@ -45,13 +53,12 @@ const Hero = () => {
         </div>
       </motion.div>
 
+      {/* OPTIONAL SCROLL TEXT */}
       <motion.div
         className="scroll-text"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-      >
-
-      </motion.div>
+      />
     </section>
   );
 };

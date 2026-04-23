@@ -44,6 +44,7 @@
 
 .footer-icons {
   display: flex;
+  flex-direction: row;
   gap: 16px;
   font-size: 20px;
 }

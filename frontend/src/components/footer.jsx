@@ -24,7 +24,7 @@ const Footer = () => {
 
         <div>
           <h3>Contact</h3>
-          <p>Email: info@aquasense.org</p>
+          <p>Email: info@jalrakshak.org</p><br />
           <div className="footer-icons">
             <FaFacebook />
             <FaTwitter />
