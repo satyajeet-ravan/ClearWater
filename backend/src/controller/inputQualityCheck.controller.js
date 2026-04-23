@@ -29,7 +29,6 @@ const manualQuality = async (req, res) => {
   let precautions = null;
   try {
     precautions = await getPrecautions(usage, classResult);
-    console.log("Precautions:", precautions);
   } catch (err) {
     console.error(err);
   }

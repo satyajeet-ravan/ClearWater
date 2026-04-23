@@ -63,7 +63,7 @@ function Profile() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-10 w-10 border-4 border-emerald-500 border-t-transparent" />
+        <div className="animate-spin rounded-full h-10 w-10 border-4 border-primary-500 border-t-transparent" />
       </div>
     );
   }
@@ -81,13 +81,13 @@ function Profile() {
     : "N/A";
 
   const editInputClass =
-    "w-full px-3 py-2 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent";
+    "w-full px-3 py-2 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent";
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       {/* Header Card */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex items-center gap-5">
-        <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shrink-0">
+        <div className="w-16 h-16 bg-primary-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shrink-0">
           {(profile.full_name || "U").charAt(0)}
         </div>
         <div className="flex-1">
@@ -101,7 +101,7 @@ function Profile() {
           className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
             editing
               ? "bg-gray-100 text-gray-600 hover:bg-gray-200"
-              : "border border-emerald-300 text-emerald-700 hover:bg-emerald-50"
+              : "border border-primary-300 text-primary-700 hover:bg-primary-50"
           }`}
           onClick={() => { setEditing(!editing); setMessage(""); }}
         >
@@ -110,7 +110,7 @@ function Profile() {
       </div>
 
       {message && (
-        <div className={`p-3 rounded-xl text-sm text-center ${message.includes("Failed") ? "bg-red-50 text-red-600 border border-red-100" : "bg-emerald-50 text-emerald-600 border border-emerald-100"}`}>
+        <div className={`p-3 rounded-xl text-sm text-center ${message.includes("Failed") ? "bg-red-50 text-red-600 border border-red-100" : "bg-primary-50 text-primary-600 border border-primary-100"}`}>
           {message}
         </div>
       )}
@@ -120,14 +120,14 @@ function Profile() {
         <h2 className="text-base font-bold text-gray-900 mb-4">Contact Information</h2>
         <div className="space-y-4">
           <div className="flex items-start gap-3">
-            <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 shrink-0"><FaEnvelope /></div>
+            <div className="w-9 h-9 bg-primary-50 rounded-lg flex items-center justify-center text-primary-600 shrink-0"><FaEnvelope /></div>
             <div>
               <p className="text-xs text-gray-400 uppercase tracking-wide">Email</p>
               <p className="text-sm text-gray-900">{profile.email}</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 shrink-0"><FaPhone /></div>
+            <div className="w-9 h-9 bg-primary-50 rounded-lg flex items-center justify-center text-primary-600 shrink-0"><FaPhone /></div>
             <div className="flex-1">
               <p className="text-xs text-gray-400 uppercase tracking-wide">Phone</p>
               {editing ? (
@@ -138,7 +138,7 @@ function Profile() {
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 shrink-0"><FaMapMarkerAlt /></div>
+            <div className="w-9 h-9 bg-primary-50 rounded-lg flex items-center justify-center text-primary-600 shrink-0"><FaMapMarkerAlt /></div>
             <div className="flex-1">
               <p className="text-xs text-gray-400 uppercase tracking-wide">Address</p>
               {editing ? (
@@ -166,7 +166,7 @@ function Profile() {
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 shrink-0"><FaCalendarAlt /></div>
+            <div className="w-9 h-9 bg-primary-50 rounded-lg flex items-center justify-center text-primary-600 shrink-0"><FaCalendarAlt /></div>
             <div>
               <p className="text-xs text-gray-400 uppercase tracking-wide">Date of Birth</p>
               <p className="text-sm text-gray-900">
@@ -179,7 +179,7 @@ function Profile() {
 
       {editing && (
         <button
-          className="w-full py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium transition-colors disabled:opacity-50 text-sm"
+          className="w-full py-3 rounded-full bg-primary-800 hover:bg-primary-900 text-white font-medium transition-colors disabled:opacity-50 text-sm"
           onClick={handleSave}
           disabled={saving}
         >

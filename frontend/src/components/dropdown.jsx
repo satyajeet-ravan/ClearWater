@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const selectClass =
-  "w-full mb-3 px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow appearance-none";
+  "w-full mb-3 px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow appearance-none";
 
 function Dropdown({ setState, setDistrict, setRiver }) {
 

@@ -6,7 +6,8 @@ import { useAuth } from "../context/AuthContext";
 
 const links = [
   { to: "/home", icon: FaHome, label: "Home" },
-  { to: "/check", icon: FaWater, label: "Water Quality" },
+  { to: "/check", icon: FaWater, label: "River Water Quality" },
+  { to: "/manual", icon: FaWater, label: "Your Water Quality" },
   { to: "/history", icon: FaHistory, label: "History" },
   { to: "/ngos", icon: RiUserCommunityFill, label: "NGOs" },
   { to: "/profile", icon: CgProfile, label: "Profile" },
@@ -24,18 +25,18 @@ function Sidebar({ isOpen }) {
     >
       <nav className="flex-1 py-4 space-y-1 px-2">
         {links.map(({ to, icon: Icon, label }) => {
-          const active = location.pathname === to;
+          const active = location.pathname.startsWith(to);
           return (
             <Link
               key={to}
               to={to}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors no-underline ${
                 active
-                  ? "bg-emerald-50 text-emerald-700 border-l-3 border-emerald-500"
+                  ? "bg-primary-50 text-primary-800 border-l-3 border-primary-500"
                   : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
               }`}
             >
-              <Icon className={`text-lg shrink-0 ${active ? "text-emerald-600" : "text-gray-400"}`} />
+              <Icon className={`text-lg shrink-0 ${active ? "text-primary-600" : "text-gray-400"}`} />
               {isOpen && <span>{label}</span>}
             </Link>
           );

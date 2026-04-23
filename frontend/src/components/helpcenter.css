@@ -12,7 +12,7 @@
 .help-title {
   font-size: 36px;
   font-weight: bold;
-  color: #004E64;
+  color: var(--color-primary-800);
   margin-bottom: 40px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .faq-card h3 {
-  color: #2BB4A0;
+  color: var(--color-primary-800);
   font-size: 18px;
   margin-bottom: 8px;
 }
@@ -45,7 +45,7 @@
   margin-top: 40px;
   display: inline-block;
   padding: 12px 24px;
-  background: #2BB4A0;
+  background: var(--color-primary-800);
   color: white;
   border-radius: 6px;
   text-decoration: none;
@@ -53,5 +53,5 @@
 }
 
 .contact-btn:hover {
-  background: #004E64;
+  background: var(--color-secondary-600);
 }

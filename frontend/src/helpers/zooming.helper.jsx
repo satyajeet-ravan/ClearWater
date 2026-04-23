@@ -20,13 +20,9 @@ function AutoZoom({ data, selectedRiver }) {
     console.log(points);
 
     const selected = validData.find(d => d["Monitoring Location"] === selectedRiver);
-    console.log(selected);
-    
-
+  
   setTimeout(() => {
     map.invalidateSize();
-
-
     if (points.length === 1) {
       map.flyTo(points[0], 10, { duration: 1.2,
         easeLinearity: 0.25
@@ -54,9 +50,6 @@ function AutoZoom({ data, selectedRiver }) {
   
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [data, selectedRiver]);
-
-console.log("Effect Triggered");
-
   return null;
 }
 

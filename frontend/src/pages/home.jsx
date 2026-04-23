@@ -29,11 +29,11 @@ function Home() {
     <div className="max-w-6xl mx-auto space-y-12 px-4">
 
       {/* HERO SECTION */}
-      <div className="bg-gradient-to-r from-emerald-50 to-white rounded-3xl shadow-md p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+      <div className="bg-gradient-to-r from-primary-50 to-white rounded-3xl shadow-md p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
         
         {/* LEFT CONTENT */}
         <div className="flex-1">
-          <span className="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
+          <span className="inline-block bg-primary-100 text-primary-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
             Dashboard
           </span>
 
@@ -47,7 +47,7 @@ function Home() {
 
           <Link
             to="/check"
-            className="inline-flex items-center gap-2 bg-emerald-600 text-white font-medium px-8 py-3 rounded-full hover:bg-emerald-700 transition-all shadow hover:shadow-lg"
+            className="inline-flex items-center gap-2 bg-primary-800 text-white font-medium px-8 py-3 rounded-full hover:bg-primary-900 transition-all shadow hover:shadow-lg"
           >
             Check Water Quality →
           </Link>
@@ -75,7 +75,7 @@ function Home() {
             key={i}
             className="bg-white rounded-xl p-4 text-center shadow-sm border hover:shadow-md transition"
           >
-            <h2 className="text-xl font-bold text-emerald-600">{item.value}</h2>
+            <h2 className="text-xl font-bold text-primary-800">{item.value}</h2>
             <p className="text-xs text-gray-500">{item.label}</p>
           </div>
         ))}
@@ -88,7 +88,7 @@ function Home() {
             key={i}
             className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
-            <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 text-lg">
+            <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-primary-800 text-lg">
               {f.icon}
             </div>
 
@@ -105,19 +105,19 @@ function Home() {
       </div>
 
       {/* EXTRA CTA */}
-      <div className="bg-emerald-600 text-white rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-primary-800 text-white rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold">
             Start analyzing your nearby river now
           </h3>
-          <p className="text-sm text-emerald-100">
+          <p className="text-sm text-primary-100">
             Get instant insights and safety recommendations
           </p>
         </div>
 
         <Link
           to="/check"
-          className="bg-white text-emerald-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition"
+          className="bg-white text-primary-800 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition"
         >
           Get Started →
         </Link>

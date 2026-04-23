@@ -52,7 +52,7 @@ function History() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-10 w-10 border-4 border-emerald-500 border-t-transparent" />
+        <div className="animate-spin rounded-full h-10 w-10 border-4 border-primary-500 border-t-transparent" />
       </div>
     );
   }
@@ -60,13 +60,13 @@ function History() {
   if (records.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-4">
-        <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-400 text-2xl mb-2">
+        <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-400 text-2xl mb-2">
           <FaTrashAlt />
         </div>
         <p className="text-gray-500 text-lg">No searches yet. Go check some water quality!</p>
         <Link
           to="/check"
-          className="px-6 py-3 bg-emerald-600 text-white rounded-full font-medium hover:bg-emerald-700 transition-colors no-underline text-sm"
+          className="px-6 py-3 bg-primary-800 text-white rounded-full font-medium hover:bg-primary-900 transition-colors no-underline text-sm"
         >
           Check Water Quality
         </Link>
@@ -110,7 +110,7 @@ function History() {
                   className={`px-3 py-1 rounded-full text-xs font-bold ${
                     isFail
                       ? "bg-red-50 text-red-600 border border-red-200"
-                      : "bg-emerald-50 text-emerald-600 border border-emerald-200"
+                      : "bg-primary-50 text-primary-600 border border-primary-200"
                   }`}
                 >
                   {record.result_status}
@@ -129,19 +129,19 @@ function History() {
               <>
                 <button
                   onClick={() => setExpandedId(isExpanded ? null : record.id)}
-                  className="flex items-center gap-1 mt-3 text-sm text-emerald-600 hover:text-emerald-700 transition-colors bg-transparent border-none cursor-pointer font-medium"
+                  className="flex items-center gap-1 mt-3 text-sm text-primary-800 hover:text-primary-900 transition-colors bg-transparent border-none cursor-pointer font-medium"
                 >
                   {isExpanded ? <FaChevronUp size={11} /> : <FaChevronDown size={11} />}
                   {isExpanded ? "Hide Precautions" : "View Precautions"}
                 </button>
 
                 {isExpanded && (
-                  <div className="mt-3 p-4 bg-emerald-50 border border-emerald-100 rounded-xl">
+                  <div className="mt-3 p-4 bg-primary-50 border border-primary-100 rounded-xl">
                     <div className="max-w-prose text-sm">
                       <ReactMarkdown
                         components={{
                           h2: ({ children }) => (
-                            <h2 className="text-xs font-bold text-emerald-800 mt-3 mb-1 uppercase tracking-wide">
+                            <h2 className="text-xs font-bold text-primary-800 mt-3 mb-1 uppercase tracking-wide">
                               {children}
                             </h2>
                           ),

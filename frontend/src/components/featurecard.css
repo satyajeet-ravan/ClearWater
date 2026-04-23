@@ -13,7 +13,7 @@
 
 .feature-icon {
   font-size: 40px;
-  color: #2BB4A0; /* Primary color */
+  color: var(--color-primary-800); /* Primary color */
   margin-bottom: 12px;
 }
 
@@ -21,7 +21,7 @@
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 8px;
-  color: #004E64; /* Secondary color */
+  color: var(--color-primary-900); /* Secondary color */
 }
 
 .feature-description {

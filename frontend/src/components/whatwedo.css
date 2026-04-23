@@ -12,7 +12,7 @@
 .what-title {
   font-size: 36px;
   font-weight: bold;
-  color: #004E64; /* secondary color */
+  color: var(--color-primary-900); /* secondary color */
   margin-bottom: 50px;
 }
 
