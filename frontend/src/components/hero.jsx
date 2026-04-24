@@ -53,7 +53,7 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* OPTIONAL SCROLL TEXT */}
+      
       <motion.div
         className="scroll-text"
         animate={{ y: [0, 10, 0] }}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaWater, FaMapMarkedAlt, FaShieldAlt, FaLeaf } from "react-icons/fa";
+import image from "../assets/home.jpeg";
 
 const features = [
   {
@@ -56,7 +57,7 @@ function Home() {
         {/* RIGHT IMAGE */}
         <div className="flex-1">
           <img
-  src="https://images.unsplash.com/photo-1505765050516-f72dcac9c60f"
+  src={image}
   alt="River"
   className="rounded-2xl shadow-md w-full object-cover h-[260px] md:h-[320px] hover:scale-105 transition duration-500"
 />
