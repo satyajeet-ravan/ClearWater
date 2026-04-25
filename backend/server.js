@@ -28,6 +28,8 @@ app.get("/", (req, res) => {
 
 const port = process.env.PORT || 3000
 
-app.listen(port, () => {
-    console.log(`http://localhost:${port}`);
-})
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
