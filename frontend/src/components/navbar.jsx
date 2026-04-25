@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import "./Navbar.css";
+import "./navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();

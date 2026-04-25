@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "./HelpCenter.css";
+import "./helpCenter.css";
 
 const HelpCenter = () => {
   const faqs = [
