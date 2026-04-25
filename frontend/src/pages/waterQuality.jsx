@@ -40,7 +40,7 @@ function WaterQuality() {
 
     try {
       const params = new URLSearchParams({ state, district, river, usage });
-      const res = await fetch(`/api/quality?${params}`);
+      const res = await fetch(`https://clearwater-j2sf.onrender.com/api/quality?${params}`);
       const data = await res.json();
 
       if (!res.ok) {

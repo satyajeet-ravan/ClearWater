@@ -31,28 +31,27 @@ function Dropdown({ setState, setDistrict, setRiver }) {
         setRiver(value);
     };
 
-    useEffect(() => {
-        fetch("/api/states")
-            .then(res => res.json())
-            .then(showStates);
-    }, []);
+   useEffect(() => {
+    fetch("https://clearwater-j2sf.onrender.com/api/states")
+        .then(res => res.json())
+        .then(showStates);
+}, []);
 
-    useEffect(() => {
-        if (!state) return;
+useEffect(() => {
+    if (!state) return;
 
-        fetch(`/api/districts/${encodeURIComponent(state)}`)
-            .then(res => res.json())
-            .then(showdistrict);
-    }, [state]);
+    fetch(`https://clearwater-j2sf.onrender.com/api/districts/${encodeURIComponent(state)}`)
+        .then(res => res.json())
+        .then(showdistrict);
+}, [state]);
 
-    useEffect(() => {
-        if (!state || !districts) return;
+useEffect(() => {
+    if (!state || !districts) return;
 
-        fetch(`/api/rivers?state=${encodeURIComponent(state)}&districts=${encodeURIComponent(districts)}`)
-            .then(res => res.json())
-            .then(showRivers);
-    }, [state, districts]);
-
+    fetch(`https://clearwater-j2sf.onrender.com/api/rivers?state=${encodeURIComponent(state)}&districts=${encodeURIComponent(districts)}`)
+        .then(res => res.json())
+        .then(showRivers);
+}, [state, districts]);
     return (
         <>
             <select onChange={(e) => handleStateChange(e.target.value)} value={state} className={selectClass}>

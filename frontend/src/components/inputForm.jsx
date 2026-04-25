@@ -40,7 +40,7 @@ function InputForm() {
     };
 
     try {
-      const res = await fetch("/api/quality/input", {
+      const res = await fetch("https://clearwater-j2sf.onrender.com/api/quality/input", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,59 +72,20 @@ function InputForm() {
     <>
       <h1 className="text-lg font-semibold mb-4 text-center">Check Your Own Water Quality</h1>
 
-      {/* pH */}
       <label className={labelClass}>pH</label>
-      <input
-        name="ph"
-        value={formData.ph}
-        onChange={handleChange}
-        placeholder="Enter pH (0 - 14)"
-        className={inputClass}
-        required
-      />
+      <input name="ph" value={formData.ph} onChange={handleChange} placeholder="Enter pH (0 - 14)" className={inputClass} required />
 
-      {/* BOD */}
       <label className={labelClass}>Biological Oxygen Demand (BOD)</label>
-      <input
-        name="bod"
-        value={formData.bod}
-        onChange={handleChange}
-        placeholder="Enter BOD (mg/L)"
-        className={inputClass}
-        required
-      />
+      <input name="bod" value={formData.bod} onChange={handleChange} placeholder="Enter BOD (mg/L)" className={inputClass} required />
 
-      {/* DO */}
       <label className={labelClass}>Dissolved Oxygen (DO)</label>
-      <input
-        name="do"
-        value={formData.do}
-        onChange={handleChange}
-        placeholder="Enter DO (mg/L)"
-        className={inputClass}
-        required
-      />
+      <input name="do" value={formData.do} onChange={handleChange} placeholder="Enter DO (mg/L)" className={inputClass} required />
 
-      {/* TC */}
       <label className={labelClass}>Total Coliform (TC)</label>
-      <input
-        name="tc"
-        value={formData.tc}
-        onChange={handleChange}
-        placeholder="Enter TC (MPN/100ml)"
-        className={inputClass}
-        required
-      />
+      <input name="tc" value={formData.tc} onChange={handleChange} placeholder="Enter TC (MPN/100ml)" className={inputClass} required />
 
-      {/* Usage */}
       <label className={labelClass}>Usage Category</label>
-      <select
-        name="usage"
-        value={formData.usage}
-        onChange={handleChange}
-        className={inputClass}
-        required
-      >
+      <select name="usage" value={formData.usage} onChange={handleChange} className={inputClass} required>
         <option value="">Select Usage</option>
         <option value="A">Drinking Water (without treatment)</option>
         <option value="B">Outdoor Bathing</option>
@@ -133,7 +94,6 @@ function InputForm() {
         <option value="E">Irrigation / Industrial / Waste Disposal</option>
       </select>
 
-      {/* Button */}
       <button
         onClick={handleSubmit}
         disabled={loading}
@@ -142,10 +102,8 @@ function InputForm() {
         {loading ? "Checking..." : "Check Quality"}
       </button>
 
-      {/* Error */}
       {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
 
-      {/* Loading */}
       {loading && (
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-4 border-primary-500 border-t-transparent mx-auto mb-2" />
@@ -153,7 +111,6 @@ function InputForm() {
         </div>
       )}
 
-      {/* Result */}
       {result && (
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
           <ResultCard result={result} />
