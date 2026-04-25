@@ -1,6 +1,6 @@
 import React from "react";
 import FeatureCard from "./featurecard";
-import "./whatweDo.css";
+import "./whatwedo.css";
 import { FaTint, FaChartLine, FaMapMarkedAlt, FaUsers } from "react-icons/fa";
 
 const WhatWeDo = () => {
