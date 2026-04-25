@@ -1,4 +1,4 @@
-import "./ControlPanel.css";
+import "./controlPanel.css";
 
 const ControlPanel = () => {
   return (

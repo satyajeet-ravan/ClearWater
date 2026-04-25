@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "./FeatureCard.css";
+import "./featurecard.css";
 
 const FeatureCard = ({ icon, title, description, delay = 0 }) => {
   return (
